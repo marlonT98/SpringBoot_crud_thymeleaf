@@ -11,20 +11,35 @@ import com.app.crud.crud.repositorio.EstudienteRepositorio;
 @Service
 public class EstudienteServicioImpl implements EstudianteServicio {
 
+  @Autowired
+  private EstudienteRepositorio repositorio;
 
-    @Autowired
-    private EstudienteRepositorio repositorio;
+  @Override
+  public List<Estudiante> listarTodosEstudientes() {
 
+    return repositorio.findAll();
 
-    @Override
-    public List<Estudiante> listarTodosEstudientes() {
-      
-        return repositorio.findAll();
+  }
 
-    }
+  @Override
+  public Estudiante guardarEstudiante(Estudiante estudiante) {
+    return repositorio.save(estudiante);
+  }
 
+  @Override
+  public Estudiante obtenerEstudiantePorId(Long id) {
 
+    return repositorio.findById(id).get();
+  }
 
+  @Override
+  public Estudiante actualizarEstudiante(Estudiante estudiante) {
+    return repositorio.save(estudiante);
+  }
 
-    
+  @Override
+  public void eliminarEstudiante(Long id) {
+    repositorio.deleteById(id);
+  }
+
 }
